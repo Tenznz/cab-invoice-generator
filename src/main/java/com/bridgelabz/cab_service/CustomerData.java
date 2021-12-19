@@ -4,7 +4,7 @@ public class CustomerData {
 	private String name;
 	private int distance; // in km
 	private int time; // in min
-	private double totalFare;
+	private static double totalFare;
 	public static CustomerData instance;
 
 	private CustomerData() {
@@ -16,6 +16,11 @@ public class CustomerData {
 			instance = new CustomerData();
 		}
 		return instance;
+	}
+
+	@Override
+	public String toString() {
+		return "CustomerData [name=" + name + ", distance=" + distance + ", time=" + time + "]";
 	}
 
 	public String getName() {
@@ -47,7 +52,7 @@ public class CustomerData {
 	}
 
 	public void setTotalFare(double totalFare) {
-		this.totalFare = totalFare;
+		CustomerData.totalFare = totalFare;
 	}
 
 }
