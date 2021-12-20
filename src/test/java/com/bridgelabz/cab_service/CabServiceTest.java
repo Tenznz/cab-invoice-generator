@@ -27,4 +27,30 @@ public class CabServiceTest {
 															// same data
 		assertEquals(220, totalActualFare, 0);
 	}
+
+	@Test
+	public void given_mulitiple_ride_should_return_total_number_of_ride() {
+		CabService cabService = new CabService();
+		cabService.MultipleRide();// distance = 10 time = 10, twice same data
+		int totalRide = cabService.getTotalRide();
+		assertEquals(2, totalRide);
+	}
+
+	@Test
+	public void given_mulitiple_ride_should_return_total_fare_of_ride() {
+		CabService cabService = new CabService();
+		CustomerData customer = CustomerData.getInstance();
+		cabService.MultipleRide();// distance = 10 time = 10, twice same data
+		double actualTotalRide = customer.getTotalFare();
+		assertEquals(220, actualTotalRide, 0);
+	}
+
+	@Test
+	public void given_mulitiple_ride_should_return_average_fare_of_ride() {
+		CabService cabService = new CabService();
+		cabService.MultipleRide();// distance = 10 time = 10, twice same data
+		double actualAvgFare = cabService.getAverageFare(); //
+		assertEquals(110, actualAvgFare, 0);
+	}
+
 }

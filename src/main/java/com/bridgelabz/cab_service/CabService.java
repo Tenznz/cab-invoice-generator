@@ -1,9 +1,9 @@
 package com.bridgelabz.cab_service;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class CabService {
+	private static int totalRide = 0;
 
 	public double calculatePerRideFare() {
 		CustomerData customer = CustomerData.getInstance();
@@ -26,7 +26,8 @@ public class CabService {
 		System.out.print("Time: ");
 		int time = sc.nextInt();
 		customer.setTime(time);
-		}
+		totalRide++;
+	}
 
 	public double MultipleRide() {
 		CustomerData customer = CustomerData.getInstance();
@@ -35,18 +36,31 @@ public class CabService {
 		System.out.print("Name: ");
 		String name = sc.next();
 		customer.setName(name);
-		int ride =1;
+		int ride = 1;
 		do {
-		if (ride == 1) {
-			calculatePerRideFare();
-		}
-		System.out.println("Ride \n1.yes\n2.no");
-		ride = sc.nextInt();
-		
-		}while(ride==1);
+			if (ride == 1) {
+				calculatePerRideFare();
+			}
+			System.out.println("Ride \n1.yes\n2.no");
+			ride = sc.nextInt();
+
+		} while (ride == 1);
 		System.out.println("Total fare:" + customer.getTotalFare());
 		return customer.getTotalFare();
 
+	}
+
+	public void setTotalRide(int totalRide) {
+		CabService.totalRide = totalRide;
+	}
+
+	public int getTotalRide() {
+		return totalRide;
+	}
+
+	public double getAverageFare() {
+		CustomerData customer = CustomerData.getInstance();
+		return (customer.getTotalFare() / getTotalRide());
 	}
 
 }
